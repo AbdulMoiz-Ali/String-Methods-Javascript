@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      CHANGING CASE ; MEASURING LENGTH AND EXTRACTING PARTS ;FINDING SEGMENTS
+      ;FINDING A CHARACTER AT A LOCATION ; REPLACING CHARACTERS
+    </title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="blue"></div>
+    <div class="heading">
+      <div class="space"></div>
+      <div class="head">
+        <h1>
+          Changing case <br />
+          Measuring length and extracting parts <br />
+          Strings: Finding segments <br />
+          Finding  a  character  at  a  location <br />
+          Replacing   characters
+        </h1>
+      </div>
+      <div class="space"></div>
+    </div>
+    <div class="blue-buttom">
+      <div class="para">
+        Assinment # 21-25 <br />
+        JAVASCRIPT
+      </div>
+    </div>
+    <div class="chap">
+      <h1><br />C h a p t e r s</h1>
+      <br />
+    </div>
+
+    <div class="moiz">
+      <h1>-: Changing case :-</h1>
+      <p class="ali">
+        You ask the user to enter her city. Then you check her city against a
+        list of the 5 cleanest <br />
+        cities. <br />
+        If the user enters "Cheyenne" or any of the other cleanest cities, your
+        code displays an <br />
+        alert telling her that it's one of the cleanest cities. <br />
+        But what if she enters "cheyenne" instead of "Cheyenne"—as some users
+        inevitably will? <br />
+        When that happens, there will be no match. JavaScript is literal-minded.
+        <br />
+        A human knows that in this context "cheyenne" means "Cheyenne." But
+        JavaScript doesn't. <br />
+        We need some way to get JavaScript to recognize the uncapitalized
+        version as a match. <br />
+        One way would be to expand the cleanestCities array to include the
+        uncapitalized <br />
+        versions of all the city names: <br />
+        var cleanestCities = ["Cheyenne", "cheyenne", "Santa Fe", "santa fe",
+        "Tucson", tucson", "Gr eat Falls",<br />
+        "great falls", "Honolulu", "honolulu"]; <br />
+        This works up to a point, but it's a lot of extra coding. Plus, if the
+        user enters "santa Fe ,"<br />
+        "Santa fe," or "sAnta Fe," we're back to the original problem. To cover
+        all these possibilit es<br />
+        and others, it would take a mile of code. <br />
+        The solution is to code the array elements in lower-case, and convert
+        the user's input, <br />
+        whatever it is, to lower-case, so we always have apples to compare with
+        apples. <br />
+        1 var cityToCheck = prompt("Enter your city"); <br />
+        2 cityToCheck = cityToCheck.toLowerCase(); <br />
+        3 var cleanestCities = ["cheyenne", "santa fe", "tucson", "great falls",
+        "honolulu"]; <br />
+        4 for (var i = 0; i <= 4; i++) { <br />
+        5 if (cityToCheck === cleanestCities[i]) { <br />
+        6 alert("It's one of the cleanest cities"); <br />
+        7 } <br />
+        8 } <br />
+        Line 2 is what's new here: <br />
+        2 cityToCheck = cityToCheck.toLowerCase(); <br />
+        The converted string is assigned to a variable. In this case, it's the
+        same variable whose <br />
+        string is being converted, cityToCheck. Note that the keyword
+        toLowerCase must be in <br />
+        camelCase. <br />
+        Note too that the toLowerCase method converts all the characters of the
+        string to lowercase, not just the initial letters. For example,
+        "ChEyEnNe" becomes "cheyenne." <br />
+        You could go the other way and convert everything to upper-case, then
+        test against <br />
+        "CHEYENNE," "SANTA FE, " etc. Most coders prefer the lower-case method.
+        To convert the <br />
+        string to upper-case, you'd write: <br />
+        2 cityToCheck = cityToCheck.toUpperCase(); <br />
+      </p>
+    </div>
+    <div class="moiz">
+      <h1>-: Strings: Measuring length and extracting parts :-</h1>
+      <p class="ali">
+        You've asked the user to give you the name of a city. You want to
+        convert the name she's <br />
+        given you to a name with an initial cap. Whether she's input "boston,"
+        "BOSTON", or <br />
+        "bosTon," you want to normalize the input to "Boston." The toLowerCase
+        and toUpperCase <br />
+        methods you learned in the last chapter won't get the job done on their
+        own, because they make <br />
+        the same wholesale change to every character in the string. But if you
+        break the string up into <br />
+        two segments, you can use these methods to get the string into the shape
+        you want. (For now, <br />
+        I'll ignore the possibility that the city name might be made up of two
+        or more words, like New <br />
+        Orleans or Sault Ste. Marie.) <br />
+        To copy a section of a string, you use the slice method. Suppose the
+        user has entered a <br />
+        string, and the string has been assigned to the variable cityToCheck.
+        The following code <br />
+        copies the first character of the string and assigns it to the variable
+        firstChar. The original <br />
+        value of cityToCheck doesn't change. If cityToCheck is "Boston",
+        firstChar is "B". <br />
+        var firstChar = cityToCheck.slice(0, 1); <br />
+        Things to be aware of: <br />
+        A string is indexed like an array. Only, instead of each index number
+        referring to an <br />
+        element, it refers to a character. <br />
+        Like array indexing, string indexing begins with 0. <br />
+        In the slice method, the first number inside the parentheses is the
+        index of the first <br />
+        character in the slice. The second number is not, however, the last
+        character in the slice. <br />
+        It's the first character after the slice. If you subtract the first
+        index from the second index, <br />
+        you'll always get the length of the slice. <br />
+        Here's another example. <br />
+        var someChars = cityToCheck.slice(2, 5); <br />
+        Again let's say that the string is "Boston". The slice begins with the
+        index-2 (the third) <br />
+        character, "s". It ends with the character before the index-5 character,
+        "n". someChars is "sto". <br />
+        If you omit the second number inside the parentheses, JavaScript
+        includes all the <br />
+        characters to the end of the string. <br />
+        var someChars = cityToCheck.slice(2); <br />
+        The slice begins with the index-2 (the third) character, "s". Since no
+        cutoff at the end is <br />
+        specified, the slice ends with the last character of the string.
+        someChars is "ston". <br />
+        Now we have a way to capitalize the first character of a string and
+        insure that the <br />
+        remaining letters are lower-case. <br />
+        1 var firstChar = cityToCheck.slice(0, 1); <br />
+        2 var otherChars = cityToCheck.slice(1); <br />
+        3 firstChar = firstChar.toUpperCase(); <br />
+        4 otherChars = otherChars.toLowerCase(); <br />
+        5 var cappedCity = firstChar + otherChars; <br />
+        Here's what happens in the code above, line-by-line: <br />
+        1. Copies the first character of the string and assigns it to the
+        variable firstChar. <br />
+        2. Copies all the characters from the second one to the end and assigns
+        them to the variable <br />
+        otherChars. <br />
+        3. Caps the first character. <br />
+        4. Lower-cases the other characters. <br />
+        5. Concatenates both parts to re-form the whole string. <br />
+        Sometimes it's useful to know how many characters are in a string. For
+        example, suppose <br />
+        you want to slice the first three characters from any string than
+        exceeds three characters in <br />
+        length, for example, slicing "Nov" from "November". To find the number
+        of characters in a <br />
+        string, you use the same language you've already learned to find the
+        number of elements in an <br />
+        array. <br />
+        1 var month = prompt("Enter a month"); <br />
+        2 var charsInMonth = month.length; <br />
+        3 if (charsInMonth > 3) { <br />
+        4 monthAbbrev = month.slice(0, 3); <br />
+        5 } <br />
+        Line 2 counts the characters in the string and assigns the number to the
+        variable <br />
+        charsInMonth. <br />
+        Being able to measure the number of characters in a string can come in
+        handy. For <br />
+        example, suppose you want to loop through a string, checking to see if
+        it has any double spaces <br />
+        in it. You can use the character count as the loop limiter. Here's some
+        code that checks for <br />
+        double spaces in a string and displays an alert if they're found. <br />
+        1 var str = prompt("Enter some text"); <br />
+        2 var numChars = str.length; <br />
+        3 for (var i = 0; i < numChars; i++) { <br />
+        4 if (str.slice(i, i + 2) === " ") { <br />
+        5 alert("No double spaces!"); <br />
+        6 break; <br />
+        7 } <br />
+        8 } <br />
+        Line 2 counts the number of characters in the string and assigns the
+        number to the variable <br />
+        numChars. In line 3, this number is used as the loop limiter. The loop
+        continues to run only as <br />
+        long as the counter, i, is less than the number of characters in the
+        string. (Remember, the length <br />
+        is 1-based, and the counter is 0-based, so the loop has to stop 1 short
+        of the length number.) <br />
+        Line 4 moves through the string character-by-character, examining each
+        2-character segment, <br />
+        looking for double spaces. <br />
+      </p>
+    </div>
+    <div class="moiz">
+      <h1>-: Strings: Finding segments :-</h1>
+      <p class="ali">
+        The New Yorker magazine doesn't allow the phrase "World War II. " They
+        say it should <br />
+        be "the Second World War." So let's search the following sentence for
+        the banned characters <br />
+        and replace them with the phrase that the New Yorker prefers. <br />
+        It is startling to think that, even in the darkest depths of World War
+        II, J. R. R. Tolkien was <br />
+        writing the trilogy, which contains, with the weird applicability
+        available only to poetry and <br />
+        myth, the essential notion that the good gray wizard can understand the
+        evil magi precisely <br />
+        because he is just enough like them to grasp their minds and motives in
+        ways that they cannot <br />
+        grasp his. <br />
+        You already know a way to find the banned segment and replace it.
+        Suppose the <br />
+        paragraph above has been assigned to the variable text. <br />
+        1 for (var i = 0; i < text.length; i++) { <br />
+        2 if (text.slice(i, i + 12) === "World War II") { <br />
+        3 text = text.slice(0, i) + "the Second World War" + text.slice(i + 12);
+        <br />
+        4 } <br />
+        5 } <br />
+        The code loops through the string looking for "World War II." Line 2
+        progresses through <br />
+        the string character-by-character, examining each 12-character sequence.
+        If it finds "World <br />
+        War II," line 3 concatenates three segments: all the characters
+        preceding "World War II," the <br />
+        substitute phrase "the Second World War," and then all the characters
+        following "World War <br />
+        II." <br />
+        But JavaScript has a more efficient way to accomplish this, using the
+        indexOf method. <br />
+        var firstChar = text.indexOf("World War II"); <br />
+        If the segment exists, the method finds the index of the first character
+        of the segment and <br />
+        assigns it to the variable firstChar. If the segment doesn't exist, the
+        method assigns -1 to the<br />
+        variable, so you know it's not there. <br />
+        Now we can replace the banned phrase with the preferred phrase with less
+        coding. <br />
+        1 var firstChar = text.indexOf("World War II"); <br />
+        2 if (firstChar !== -1) { <br />
+        3 text = text.slice(0, firstChar) + "the Second World War" +
+        text.slice(firstChar + 12); <br />
+        4 { <br />
+        Line 1 checks for the phrase, assigning the index of the first character
+        of the phrase to the <br />
+        variable firstChar—if the phrase is found. If it isn't found, -1 is
+        assigned to the variable. If <br />
+        the variable doesn't have the value -1 (line 2)—if the phrase has been
+        found—the <br />
+        concatenation in line 3 replaces the offending phrase with the correct
+        pharse. <br />
+        The indexOf method finds only the first instance of the segment you're
+        looking for. In the <br />
+        example above, you could overcome this limitation by looping. You'd
+        change the first instanc <br />
+        of "World War II" to "the Second World War," then in the next loop
+        iteration, find the next <br />
+        surviving instance and change that, and so on. <br />
+        To find the last instance of a segment in a string, use lastIndexOf. The
+        following code <br />
+        finds the index of the first character of the last instance of the
+        segment, the second "be". The <br />
+        variable segIndex winds up with a value of 16, the index of "b" in the
+        second "be". <br />
+        1 var text = "To be or not to be."; <br />
+        2 var segIndex = text.lastIndexOf("be"); <br />
+      </p>
+    </div>
+    <div class="moiz">
+      <h1>-: Strings: Finding a character at a location :-</h1>
+      <p class="ali">
+        The user has entered his first name. The string has been assigned to the
+        variable <br />
+        firstName. You want to extract the first character. You already know one
+        way to do it. <br />
+        var firstChar = firstName.slice(0, 1); <br />
+        Here's an alternate way to do it that's more direct. <br />
+        var firstChar = firstName.charAt(0) <br />
+        The code above finds a single character at index-0 (the beginning) of
+        the string <br />
+        represented by the variable firstName and assigns it to the variable
+        firstChar. <br />
+        The following code finds the last character in the string. <br />
+        var lastChar = name.charAt(name.length - 1); <br />
+        The following code cycles through a string looking for an exclamation
+        point. If the <br />
+        character is found, an alert displays. <br />
+        1 for (var i = 0; i < text.length; i++) { <br />
+        2 if (text.charAt(i) === "!") { <br />
+        3 alert("Exclamation point found!"); <br />
+        4 break; <br />
+        5 } <br />
+        6 } <br />
+        Note: The indexOf method can only identify the character at a particular
+        location. It can't <br />
+        change the character at a location. <br />
+      </p>
+    </div>
+    <div class="moiz">
+      <h1>-: Strings: Replacing characters :-</h1>
+      <p class="ali">
+        In previous chapters you learned two different ways to replace "World
+        War II" with "the <br />
+        Second World War" in a string. First, there was the loop-and-slice
+        approach. <br />
+        1 for (var i = 0; i < text.length; i++) { <br />
+        2 if (text.slice(i, i + 12) === "World War II") { <br />
+        3 text = text.slice(0, 1) + "the Second World War" + text.slice(i + 12);
+        <br />
+        4 } <br />
+        5 } <br />
+        You improved on that rather crude approach when you learned the indexOf
+        method. <br />
+        1 var firstChar = text.indexOf("World War II"); <br />
+        2 if (firstChar !== -1) { <br />
+        3 text = text.slice(0, firstChar) + "the Second World War" +
+        text.slice(firstChar + 12) <br />; 4 } <br />
+        But JavaScript provides a more straightforward way still, the replace
+        method. <br />
+        var newText = text.replace("World War II", "the Second World War");
+        <br />
+        The first string inside the parentheses is the segment to be replaced.
+        The second string is <br />
+        the segment to be inserted. In the above code, the segment "World War
+        II" is replaced by the <br />
+        segment "the Second World War" in the string represented by the variable
+        text, and the <br />
+        revised string is assigned to the new variable newText. <br />
+        If you assign the revised string to a new variable, as in the example
+        above, the original <br />
+        string is preserved. If you want the original string to be replaced by
+        the revised string, assign<br />
+        the revised string to the original variable. <br />
+        text = text.replace("World War II", "the Second World War"); <br />
+        In the examples above, only the first instance of a string is replaced.
+        If you want to <br />
+        replace all instances, you must let JavaScript know that you want a
+        global replace. <br />
+        var newText = text.replace(/World War II/g, "the Second World War");
+        <br />
+        In a global replace, you enclose the segment to be replaced by slashes
+        instead of <br />
+        quotation marks, and follow the closing slash with "g" for "global." The
+        segment to be inserted<br />
+        is enclosed by quotation marks, as in a one-time replace. <br />
+      </p>
+    </div>
+    <div class="moiz">
+      <h1>Assignment</h1>
+      <p class="ali">
+        <object
+          data="./chapters21-25.pdf"
+          type="application/pdf"
+          width="100%"
+          height="500px"
+        >
+          <p>
+            Unable to display PDF file.
+            <a href="./chapters21-25.pdf">Download</a>
+            instead.
+          </p>
+        </object>
+      </p>
+    </div>
+    <div class="chap">
+      <h1><br />Perform The Assignment</h1>
+      <br />
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
